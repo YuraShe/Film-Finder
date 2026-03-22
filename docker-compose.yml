@@ -1,0 +1,34 @@
+version: '3.8'
+
+services:
+  app:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - "5000:5000"
+    volumes:
+      - .:/workspace:cached
+      - /workspace/__pycache__
+    environment:
+      - FLASK_ENV=development
+      - SECRET_KEY=change-this-secret-key
+      - API_BASE=http://127.0.0.1:1234/v1
+      - API_KEY=lm-studio
+      - MODEL_NAME=google/gemma-3-4b
+      - TEMPERATURE=0.4
+      - MAX_TOKENS=700
+      - SYSTEM_PROMPT_PATH=/workspace/system-prompt.txt
+      - DATABASE_URL=sqlite:///movie_finder.db
+    depends_on:
+      - chromadb
+
+  chromadb:
+    image: ghcr.io/chroma-core/chroma:latest
+    ports:
+      - "8000:8000"
+    volumes:
+      - chroma_data:/chroma
+
+volumes:
+  chroma_data:

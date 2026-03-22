@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Movie Finder AI</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+</head>
+
+<body>
+    <div class="app-shell">
+        <aside class="sidebar">
+            <div class="sidebar-top">
+                <div class="brand">
+                    <div class="brand-logo">🎬</div>
+                    <div>
+                        <div class="brand-title">Movie Finder AI</div>
+                        <div class="brand-subtitle">LM Studio chat</div>
+                    </div>
+                </div>
+
+                <button id="new-chat-btn" class="primary-btn">
+                    + New Chat
+                </button>
+            </div>
+
+            <div class="sidebar-label">My Chats</div>
+            <div id="chat-list" class="chat-list"></div>
+        </aside>
+
+        <main class="main-panel">
+            <header class="topbar">
+                <div class="topbar-left">
+                    <h1 id="chat-title">New Chat</h1>
+                    <p id="chat-subtitle">
+                        Describe a scene, character, atmosphere, approximate year, or actors
+                    </p>
+                </div>
+
+                <div class="topbar-actions">
+                    <button id="rename-chat-btn" class="ghost-btn">Rename</button>
+                    <button id="delete-chat-btn" class="ghost-btn danger">Delete</button>
+                </div>
+            </header>
+
+            <section id="messages" class="messages"></section>
+
+            <section id="extra-panel" class="extra-panel hidden"></section>
+
+            <form id="chat-form" class="composer">
+                <textarea id="user-input" class="composer-input" rows="1"
+                    placeholder="For example: I remember a movie where a boy finds a strange creature in the forest..."></textarea>
+
+                <div class="composer-footer">
+                    <div class="composer-hint">
+                        Enter — send, Shift+Enter — new line
+                    </div>
+                    <button id="send-btn" type="submit" class="primary-btn">
+                        Send
+                    </button>
+                </div>
+            </form>
+        </main>
+    </div>
+
+    <script src="{{ url_for('static', filename='app.js') }}"></script>
+</body>
+
+</html>
